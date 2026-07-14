@@ -2,24 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Sprout &amp; Steeple Early Learning — Opening September 2026</title>
+<title>Tots 2 Teens Early Learning — Opening September 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
   /* ---------- tokens ---------- */
   :root{
-    --ink:#1E3436;
-    --ink-soft:#4B6260;
-    --paper:#F2ECDC;
-    --paper-raised:#FBF8EE;
+    --ink:#142244;
+    --ink-soft:#51628A;
+    --paper:#FAFBFF;
+    --paper-raised:#FFFFFF;
     --paper-line:#FFFFFF;
-    --line:#C9BFA3;
-    --plum:#6B4C8A;
-    --plum-ink:#3E2C54;
-    --harbor:#2E6E8E;
-    --moss:#5C7A4B;
-    --coral:#E0733F;
-    --coral-ink:#8C4321;
-    --shadow: 0 20px 45px -25px rgba(30,52,54,0.45);
+    --line:#D8E1F0;
+    --blue:#1D63ED;
+    --blue-deep:#0B3FA0;
+    --yellow:#FFC22E;
+    --orange:#FF9F1C;
+    --shadow: 0 20px 45px -25px rgba(20,34,68,0.35);
     --font-display: "Iowan Old Style","Palatino Linotype","URW Palladio L",Georgia,ui-serif,serif;
     --font-body: Optima,Candara,"Segoe UI",ui-sans-serif,system-ui,-apple-system,sans-serif;
     --font-mono: ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
@@ -27,33 +25,31 @@
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --ink:#EDE7D8;
-      --ink-soft:#AEC0BC;
-      --paper:#141F1E;
-      --paper-raised:#1C2A28;
-      --paper-line:#233231;
-      --line:#3C4B47;
-      --plum:#B49BD1;
-      --plum-ink:#EDE7D8;
-      --harbor:#7FC2E2;
-      --moss:#9CC084;
-      --coral:#F0975E;
-      --coral-ink:#F6E4D5;
-      --shadow: 0 20px 45px -20px rgba(0,0,0,0.6);
+      --ink:#EAF0FF;
+      --ink-soft:#9FB3D9;
+      --paper:#0B1530;
+      --paper-raised:#12204A;
+      --paper-line:#233866;
+      --line:#233866;
+      --blue:#5B8DFF;
+      --blue-deep:#3A63C9;
+      --yellow:#FFD35C;
+      --orange:#FFB157;
+      --shadow: 0 20px 45px -20px rgba(0,0,0,0.65);
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"]{
-    --ink:#EDE7D8; --ink-soft:#AEC0BC; --paper:#141F1E; --paper-raised:#1C2A28;
-    --paper-line:#233231; --line:#3C4B47; --plum:#B49BD1; --plum-ink:#EDE7D8;
-    --harbor:#7FC2E2; --moss:#9CC084; --coral:#F0975E; --coral-ink:#F6E4D5;
-    --shadow: 0 20px 45px -20px rgba(0,0,0,0.6); color-scheme: dark;
+    --ink:#EAF0FF; --ink-soft:#9FB3D9; --paper:#0B1530; --paper-raised:#12204A;
+    --paper-line:#233866; --line:#233866; --blue:#5B8DFF; --blue-deep:#3A63C9;
+    --yellow:#FFD35C; --orange:#FFB157;
+    --shadow: 0 20px 45px -20px rgba(0,0,0,0.65); color-scheme: dark;
   }
   :root[data-theme="light"]{
-    --ink:#1E3436; --ink-soft:#4B6260; --paper:#F2ECDC; --paper-raised:#FBF8EE;
-    --paper-line:#FFFFFF; --line:#C9BFA3; --plum:#6B4C8A; --plum-ink:#3E2C54;
-    --harbor:#2E6E8E; --moss:#5C7A4B; --coral:#E0733F; --coral-ink:#8C4321;
-    --shadow: 0 20px 45px -25px rgba(30,52,54,0.45); color-scheme: light;
+    --ink:#142244; --ink-soft:#51628A; --paper:#FAFBFF; --paper-raised:#FFFFFF;
+    --paper-line:#FFFFFF; --line:#D8E1F0; --blue:#1D63ED; --blue-deep:#0B3FA0;
+    --yellow:#FFC22E; --orange:#FF9F1C;
+    --shadow: 0 20px 45px -25px rgba(20,34,68,0.35); color-scheme: light;
   }
 
   *{box-sizing:border-box;}
@@ -73,8 +69,8 @@
     color:var(--ink-soft);
   }
   .tag-num{font-variant-numeric:tabular-nums; font-family:var(--font-mono);}
-  ::selection{background:var(--plum); color:var(--paper-raised);}
-  :focus-visible{outline:2.5px solid var(--coral); outline-offset:3px; border-radius:3px;}
+  ::selection{background:var(--blue); color:var(--paper-raised);}
+  :focus-visible{outline:2.5px solid var(--blue); outline-offset:3px; border-radius:3px;}
 
   /* subtle blueprint grid texture used behind hero & section seams */
   .grid-paper{
@@ -99,11 +95,11 @@
   .mark{width:40px; height:40px; flex:none;}
   .nav-links{display:flex; gap:1.9rem; list-style:none; margin:0; padding:0; font-size:.94rem;}
   .nav-links a{text-decoration:none; position:relative; padding-block:.2rem;}
-  .nav-links a::after{content:"";position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--coral); transform:scaleX(0); transform-origin:left; transition:transform .25s ease;}
+  .nav-links a::after{content:"";position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--blue); transform:scaleX(0); transform-origin:left; transition:transform .25s ease;}
   .nav-links a:hover::after{transform:scaleX(1);}
   .nav-cta{
     font-family:var(--font-mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase;
-    background:var(--coral); color:#fff8ef; padding:.55rem 1rem; border-radius:100px; text-decoration:none;
+    background:var(--yellow); color:var(--ink); padding:.55rem 1rem; border-radius:100px; text-decoration:none;
     box-shadow:var(--shadow); white-space:nowrap;
   }
   .nav-toggle{display:none; background:none; border:1px solid var(--line); border-radius:8px; padding:.4rem .6rem; font-size:1.1rem; color:var(--ink);}
@@ -112,10 +108,10 @@
   .hero{position:relative; overflow:hidden; padding-block:clamp(64px,10vw,116px) clamp(56px,8vw,96px);}
   .hero .wrap{position:relative; display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,60px); align-items:center;}
   .hero-eyebrow{display:inline-flex; align-items:center; gap:.5rem; background:var(--paper-raised); border:1px solid var(--line); padding:.4rem .85rem; border-radius:100px; margin-bottom:1.4rem;}
-  .hero-eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--coral); animation:pulse 2.2s ease-in-out infinite;}
+  .hero-eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--blue); animation:pulse 2.2s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.35;}}
   .hero h1{font-size:clamp(2.5rem,4.6vw,3.85rem); line-height:1.06; letter-spacing:-.01em;}
-  .hero h1 em{font-style:italic; color:var(--plum);}
+  .hero h1 em{font-style:italic; color:var(--blue);}
   .hero p.lede{margin-top:1.25rem; max-width:46ch; font-size:1.14rem; color:var(--ink-soft);}
   .hero-actions{display:flex; gap:.9rem; margin-top:2.1rem; flex-wrap:wrap;}
   .btn{
@@ -153,7 +149,7 @@
   .tour-top{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:1.3rem;}
   .room-dots{display:flex; gap:.5rem;}
   .room-dots button{width:11px; height:11px; border-radius:50%; border:1px solid var(--line); background:transparent; padding:0; cursor:pointer;}
-  .room-dots button[aria-current="true"]{background:var(--coral); border-color:var(--coral);}
+  .room-dots button[aria-current="true"]{background:var(--yellow); border-color:var(--yellow);}
   .tour-controls{display:flex; gap:.6rem;}
   .tour-controls button{
     font-family:var(--font-mono); font-size:.78rem; letter-spacing:.04em; text-transform:uppercase;
@@ -172,8 +168,8 @@
   .hallway-strip{fill:var(--paper);}
   .hallway-path{fill:none; stroke:var(--line); stroke-width:2; stroke-dasharray:6 6;}
   .walker{transition:transform .55s cubic-bezier(.4,.0,.2,1);}
-  .walker circle.body{fill:var(--coral); stroke:var(--paper-raised); stroke-width:3;}
-  .walker circle.pulse{fill:none; stroke:var(--coral); stroke-width:2; opacity:.5; animation:walkerPulse 1.8s ease-out infinite;}
+  .walker circle.body{fill:var(--yellow); stroke:var(--paper-raised); stroke-width:3;}
+  .walker circle.pulse{fill:none; stroke:var(--yellow); stroke-width:2; opacity:.5; animation:walkerPulse 1.8s ease-out infinite;}
   @keyframes walkerPulse{0%{r:12; opacity:.55;} 100%{r:26; opacity:0;}}
 
   .room-detail{display:grid; grid-template-columns:auto 1fr; gap:1.3rem; margin-top:1.6rem; padding-top:1.5rem; border-top:1px dashed var(--line); align-items:start;}
@@ -190,7 +186,7 @@
   .plaque-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,4vw,40px);}
   .plaque{background:var(--paper-raised); border:1px solid var(--line); border-radius:18px; padding:clamp(20px,3vw,28px);}
   .plaque h3{font-size:1.2rem; display:flex; align-items:center; gap:.6rem;}
-  .plaque h3 .chip{width:9px; height:9px; border-radius:2px; transform:rotate(45deg); background:var(--moss); flex:none;}
+  .plaque h3 .chip{width:9px; height:9px; border-radius:2px; transform:rotate(45deg); background:var(--blue); flex:none;}
   .check-list{list-style:none; margin:1.1rem 0 0; padding:0; display:grid; gap:.65rem;}
   .check-list li{display:flex; gap:.65rem; align-items:flex-start; font-size:.95rem;}
   .check-list svg{flex:none; margin-top:3px;}
@@ -214,7 +210,7 @@
   .enroll-flex h2{color:var(--paper); font-size:clamp(1.9rem,3.4vw,2.5rem);}
   .countdown{display:flex; gap:1rem; margin-top:1.6rem; flex-wrap:wrap;}
   .countdown div{text-align:center;}
-  .countdown .num{font-family:var(--font-mono); font-size:clamp(1.8rem,4vw,2.5rem); font-weight:600; font-variant-numeric:tabular-nums; color:var(--coral);}
+  .countdown .num{font-family:var(--font-mono); font-size:clamp(1.8rem,4vw,2.5rem); font-weight:600; font-variant-numeric:tabular-nums; color:var(--yellow);}
   .countdown .lbl{font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:color-mix(in srgb, var(--paper) 65%, transparent);}
   .enroll-form{background:var(--paper); color:var(--ink); border-radius:18px; padding:clamp(20px,3vw,30px); box-shadow:0 30px 60px -30px rgba(0,0,0,.5);}
   .field{display:grid; gap:.35rem; margin-bottom:1rem;}
@@ -236,7 +232,7 @@
   .foot-grid h4{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:.8rem;}
   .foot-grid ul{list-style:none; margin:0; padding:0; display:grid; gap:.55rem; font-size:.9rem;}
   .foot-grid a{text-decoration:none;}
-  .foot-grid a:hover{color:var(--coral);}
+  .foot-grid a:hover{color:var(--blue);}
   .foot-bottom{margin-top:2.4rem; padding-top:1.4rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:.8rem; font-size:.82rem; color:var(--ink-soft);}
 
   @media (max-width:900px){
@@ -264,13 +260,13 @@
   <div class="wrap">
     <a class="brand" href="#top">
       <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
-        <rect x="1" y="1" width="38" height="38" rx="9" fill="var(--plum)"/>
+        <rect x="1" y="1" width="38" height="38" rx="9" fill="var(--blue)"/>
         <path d="M20 10c-3 3-3 6 0 9 3-3 3-6 0-9Z" fill="var(--paper-raised)"/>
         <path d="M20 19v11" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round"/>
         <path d="M14 30h12" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round"/>
         <path d="M20 19c-4 0-6-2-6-2M20 19c4 0-2 0 6-2" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round" fill="none"/>
       </svg>
-      <span>Sprout &amp; Steeple<small>Early Learning Center</small></span>
+      <span>Tots 2 Teens<small>Early Learning Center</small></span>
     </a>
     <ul class="nav-links">
       <li><a href="#tour">The Walkthrough</a></li>
@@ -291,7 +287,7 @@
       <div>
         <div class="hero-eyebrow"><span class="dot"></span> <span class="eyebrow">Now enrolling &middot; opens September 2026</span></div>
         <h1>Fifty little ones,<br>one hallway, <em>endless room</em> to grow.</h1>
-        <p class="lede">Sprout &amp; Steeple is a brand-new basement daycare built from the studs up for four age groups — Toddler through Pre-K — inside a real, working church. Walk the hallway below to see exactly where your child will spend their days.</p>
+        <p class="lede">Tots 2 Teens is a brand-new basement daycare built from the studs up for four age groups — Toddler through Pre-K — inside a real, working church. Walk the hallway below to see exactly where your child will spend their days.</p>
         <div class="hero-actions">
           <a class="btn btn-solid" href="#tour">Take the Virtual Tour</a>
           <a class="btn btn-line" href="#enroll">Reserve a September Spot</a>
@@ -307,10 +303,10 @@
         <div class="cap"><span>Master Blueprint</span><span>Scale 1/4&Prime; = 1 ft</span></div>
         <svg class="mini-map" viewBox="0 0 400 200" role="img" aria-label="Miniature floor plan preview">
           <rect width="400" height="200" fill="var(--paper)"/>
-          <rect x="14" y="14" width="112" height="112" fill="var(--plum)" opacity=".85"/>
-          <rect x="130" y="14" width="112" height="112" fill="var(--harbor)" opacity=".85"/>
-          <rect x="246" y="14" width="72" height="112" fill="var(--moss)" opacity=".85"/>
-          <rect x="322" y="14" width="64" height="112" fill="var(--coral)" opacity=".85"/>
+          <rect x="14" y="14" width="112" height="112" fill="var(--blue)" opacity=".85"/>
+          <rect x="130" y="14" width="112" height="112" fill="var(--blue-deep)" opacity=".85"/>
+          <rect x="246" y="14" width="72" height="112" fill="var(--yellow)" opacity=".85"/>
+          <rect x="322" y="14" width="64" height="112" fill="var(--orange)" opacity=".85"/>
           <rect x="14" y="150" width="372" height="26" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 5"/>
           <text x="200" y="167" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="var(--ink-soft)">6 FT HALLWAY · MAIN ENTRANCE</text>
         </svg>
@@ -371,25 +367,25 @@
       </div>
       <div class="plaque-grid">
         <div class="plaque" data-reveal>
-          <h3><span class="chip" style="background:var(--moss)"></span>Compliance Highlights</h3>
+          <h3><span class="chip" style="background:var(--blue)"></span>Compliance Highlights</h3>
           <ul class="check-list">
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> All materials sit at child height, in every room</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Learning centers labeled clearly, with photos</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Wide-open floor space for safe movement &amp; supervision</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Sinks &amp; handwashing stations within reach</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Natural daylight reaches every classroom</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Exits marked, unobstructed, and drilled monthly</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--blue)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> All materials sit at child height, in every room</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--blue)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Learning centers labeled clearly, with photos</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--blue)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Wide-open floor space for safe movement &amp; supervision</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--blue)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Sinks &amp; handwashing stations within reach</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--blue)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Natural daylight reaches every classroom</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--blue)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Exits marked, unobstructed, and drilled monthly</li>
           </ul>
         </div>
         <div class="plaque" data-reveal>
-          <h3><span class="chip" style="background:var(--plum)"></span>Mobile &amp; Modular by Design</h3>
+          <h3><span class="chip" style="background:var(--yellow)"></span>Mobile &amp; Modular by Design</h3>
           <ul class="check-list">
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Wall dividers roll and lock into place in seconds</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Chairs stack, tables fold, storage rolls away</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Rugs roll up in one motion for fast storage</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Every classroom breaks down in under 20 minutes</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Full open floor for Sunday service, restored by Monday</li>
-            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Locking casters keep every unit put during the week</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--yellow)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Wall dividers roll and lock into place in seconds</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--yellow)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Chairs stack, tables fold, storage rolls away</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--yellow)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Rugs roll up in one motion for fast storage</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--yellow)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Every classroom breaks down in under 20 minutes</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--yellow)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Full open floor for Sunday service, restored by Monday</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--yellow)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Locking casters keep every unit put during the week</li>
           </ul>
         </div>
       </div>
@@ -401,15 +397,15 @@
       <div data-reveal>
         <p class="eyebrow">One Room, Two Callings</p>
         <h2>Weekdays, it's a classroom.<br>Weekends, it's a sanctuary.</h2>
-        <p style="color:var(--ink-soft); margin-top:.9rem; max-width:52ch;">Sprout &amp; Steeple shares its basement with the church upstairs. Every shelf, divider, and rug was chosen so the same 1,750 sq ft can flip from five classrooms to open sanctuary seating — and back — without a single tool.</p>
+        <p style="color:var(--ink-soft); margin-top:.9rem; max-width:52ch;">Tots 2 Teens shares its basement with the church upstairs. Every shelf, divider, and rug was chosen so the same 1,750 sq ft can flip from five classrooms to open sanctuary seating — and back — without a single tool.</p>
         <div class="timer-badge">⏱ <span>Full changeover, start to finish: under 20 minutes</span></div>
       </div>
       <div>
         <div class="steps-row" data-reveal>
-          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="var(--harbor)" stroke-width="1.6"/><path d="M9 3v18M15 3v18" stroke="var(--harbor)" stroke-width="1.6"/></svg><span>1. Unlock &amp; fold dividers</span></div>
-          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="5" y="6" width="14" height="4" rx="1" stroke="var(--harbor)" stroke-width="1.6"/><rect x="5" y="12" width="14" height="4" rx="1" stroke="var(--harbor)" stroke-width="1.6"/></svg><span>2. Stack chairs, fold tables</span></div>
-          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="10" width="18" height="4" rx="2" stroke="var(--harbor)" stroke-width="1.6"/></svg><span>3. Roll up rugs, store toys</span></div>
-          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="var(--harbor)" stroke-width="1.6"/></svg><span>4. Clear floor — sanctuary ready</span></div>
+          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="var(--blue)" stroke-width="1.6"/><path d="M9 3v18M15 3v18" stroke="var(--blue)" stroke-width="1.6"/></svg><span>1. Unlock &amp; fold dividers</span></div>
+          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="5" y="6" width="14" height="4" rx="1" stroke="var(--blue)" stroke-width="1.6"/><rect x="5" y="12" width="14" height="4" rx="1" stroke="var(--blue)" stroke-width="1.6"/></svg><span>2. Stack chairs, fold tables</span></div>
+          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="10" width="18" height="4" rx="2" stroke="var(--blue)" stroke-width="1.6"/></svg><span>3. Roll up rugs, store toys</span></div>
+          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="var(--blue)" stroke-width="1.6"/></svg><span>4. Clear floor — sanctuary ready</span></div>
         </div>
       </div>
     </div>
@@ -466,7 +462,7 @@
               <p class="form-note">No payment required to join the waitlist. We'll follow up to schedule an in-person visit.</p>
             </form>
             <div class="success-msg" id="successMsg">
-              <svg class="check" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="var(--moss)" stroke-width="2"/><path d="M13 22l6 6 12-13" fill="none" stroke="var(--moss)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="check" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="var(--blue)" stroke-width="2"/><path d="M13 22l6 6 12-13" fill="none" stroke="var(--blue)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <h3 style="font-size:1.15rem;">You're on the list.</h3>
               <p style="color:var(--ink-soft); margin-top:.4rem;">We'll email you within two business days to schedule your visit.</p>
             </div>
@@ -482,28 +478,27 @@
     <div>
       <a class="brand" href="#top" style="margin-bottom:.8rem; display:inline-flex;">
         <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
-          <rect x="1" y="1" width="38" height="38" rx="9" fill="var(--plum)"/>
+          <rect x="1" y="1" width="38" height="38" rx="9" fill="var(--blue)"/>
           <path d="M20 10c-3 3-3 6 0 9 3-3 3-6 0-9Z" fill="var(--paper-raised)"/>
           <path d="M20 19v11" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round"/>
           <path d="M14 30h12" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <span>Sprout &amp; Steeple</span>
+        <span>Tots 2 Teens</span>
       </a>
-      <p style="color:var(--ink-soft); max-width:32ch; font-size:.92rem;">A 1,750 sq ft basement daycare inside Fellowship Community Church, opening September 2026.</p>
+      <p style="color:var(--ink-soft); max-width:32ch; font-size:.92rem;">A 1,750 sq ft basement daycare opening inside our host church, September 2026.</p>
     </div>
     <div>
       <h4>Visit</h4>
       <ul>
-        <li>123 Fellowship Lane</li>
-        <li>Hudson Falls, NY 12839</li>
+        <li>Address: to be announced</li>
         <li>Basement entrance, rear lot</li>
       </ul>
     </div>
     <div>
       <h4>Contact</h4>
       <ul>
-        <li><a href="tel:+15550100143">(555) 010-0143</a></li>
-        <li><a href="mailto:hello@sproutandsteeple.org">hello@sproutandsteeple.org</a></li>
+        <li><a href="tel:+18452907379">(845) 290-7379</a></li>
+        <li><a href="mailto:tot2teens123@gmail.com">tot2teens123@gmail.com</a></li>
         <li>Mon–Fri, 7:00a–6:00p</li>
       </ul>
     </div>
@@ -518,7 +513,7 @@
     </div>
   </div>
   <div class="wrap foot-bottom">
-    <span>© 2026 Sprout &amp; Steeple Early Learning Center. All rights reserved.</span>
+    <span>© 2026 Tots 2 Teens Early Learning Center. All rights reserved.</span>
     <span>Licensed &amp; inspected under NYS OCFS · ECERS-3 rated</span>
   </div>
 </footer>
@@ -529,28 +524,28 @@
     {
       name:"Pre-K Room 1",
       sqft:560, capacity:16,
-      color:"var(--plum)",
+      color:"var(--blue)", ink:"light",
       desc:"The most independent learners in the building get five dedicated centers and their own small-group table — built for children about to start kindergarten.",
       centers:["Library & Writing","Math & Manipulatives","Technology","Science & Discovery","Blocks & Engineering"]
     },
     {
       name:"Pre-K Room 2",
       sqft:560, capacity:16,
-      color:"var(--harbor)",
+      color:"var(--blue-deep)", ink:"light",
       desc:"A twin classroom next door, oriented around dramatic play and the arts — sensory and fine-motor work sit right beside the easels.",
       centers:["Dramatic Play","Art Studio","Sensory","Fine Motor","Music & Movement"]
     },
     {
       name:"3-Year-Old Room",
       sqft:350, capacity:10,
-      color:"var(--moss)",
+      color:"var(--yellow)", ink:"dark",
       desc:"Smaller group, more one-on-one time. Centers are scaled down but no less complete — block building through early literacy.",
       centers:["Dramatic Play","Art Center","Blocks Center","Library Center","Manipulative Center"]
     },
     {
       name:"Toddler Room",
       sqft:280, capacity:8,
-      color:"var(--coral)",
+      color:"var(--orange)", ink:"dark",
       desc:"The smallest room, closest to the entrance, built around soft play and calm. Everything here is padded, low, and within an arm's reach.",
       centers:["Soft Play / Active Area","Sensory Center","Early Learning Center","Reading / Calm Area"]
     }
@@ -586,11 +581,14 @@
     rect.setAttribute("fill", r.color);
     g.appendChild(rect);
 
+    var labelFill = r.ink === "dark" ? "var(--ink)" : "var(--paper-raised)";
+
     var label = document.createElementNS(svgNS,"text");
     label.setAttribute("class","room-label");
     label.setAttribute("x", r.cx);
     label.setAttribute("y", mapTop + roomHeight/2 - 6);
     label.setAttribute("text-anchor","middle");
+    label.style.fill = labelFill;
     label.textContent = r.name;
     g.appendChild(label);
 
@@ -599,6 +597,7 @@
     sub.setAttribute("x", r.cx);
     sub.setAttribute("y", mapTop + roomHeight/2 + 14);
     sub.setAttribute("text-anchor","middle");
+    sub.style.fill = labelFill;
     sub.textContent = r.sqft + " sq ft · " + r.capacity + " children";
     g.appendChild(sub);
 
