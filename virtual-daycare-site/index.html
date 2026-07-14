@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sprout &amp; Steeple Early Learning — Opening September 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  /* ---------- tokens ---------- */
+  :root{
+    --ink:#1E3436;
+    --ink-soft:#4B6260;
+    --paper:#F2ECDC;
+    --paper-raised:#FBF8EE;
+    --paper-line:#FFFFFF;
+    --line:#C9BFA3;
+    --plum:#6B4C8A;
+    --plum-ink:#3E2C54;
+    --harbor:#2E6E8E;
+    --moss:#5C7A4B;
+    --coral:#E0733F;
+    --coral-ink:#8C4321;
+    --shadow: 0 20px 45px -25px rgba(30,52,54,0.45);
+    --font-display: "Iowan Old Style","Palatino Linotype","URW Palladio L",Georgia,ui-serif,serif;
+    --font-body: Optima,Candara,"Segoe UI",ui-sans-serif,system-ui,-apple-system,sans-serif;
+    --font-mono: ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#EDE7D8;
+      --ink-soft:#AEC0BC;
+      --paper:#141F1E;
+      --paper-raised:#1C2A28;
+      --paper-line:#233231;
+      --line:#3C4B47;
+      --plum:#B49BD1;
+      --plum-ink:#EDE7D8;
+      --harbor:#7FC2E2;
+      --moss:#9CC084;
+      --coral:#F0975E;
+      --coral-ink:#F6E4D5;
+      --shadow: 0 20px 45px -20px rgba(0,0,0,0.6);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EDE7D8; --ink-soft:#AEC0BC; --paper:#141F1E; --paper-raised:#1C2A28;
+    --paper-line:#233231; --line:#3C4B47; --plum:#B49BD1; --plum-ink:#EDE7D8;
+    --harbor:#7FC2E2; --moss:#9CC084; --coral:#F0975E; --coral-ink:#F6E4D5;
+    --shadow: 0 20px 45px -20px rgba(0,0,0,0.6); color-scheme: dark;
+  }
+  :root[data-theme="light"]{
+    --ink:#1E3436; --ink-soft:#4B6260; --paper:#F2ECDC; --paper-raised:#FBF8EE;
+    --paper-line:#FFFFFF; --line:#C9BFA3; --plum:#6B4C8A; --plum-ink:#3E2C54;
+    --harbor:#2E6E8E; --moss:#5C7A4B; --coral:#E0733F; --coral-ink:#8C4321;
+    --shadow: 0 20px 45px -25px rgba(30,52,54,0.45); color-scheme: light;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-body); font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin-inline:auto; padding-inline:clamp(20px,4vw,48px);}
+  h1,h2,h3{font-family:var(--font-display); font-weight:600; text-wrap:balance; margin:0;}
+  p{margin:0;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .tag-num{font-variant-numeric:tabular-nums; font-family:var(--font-mono);}
+  ::selection{background:var(--plum); color:var(--paper-raised);}
+  :focus-visible{outline:2.5px solid var(--coral); outline-offset:3px; border-radius:3px;}
+
+  /* subtle blueprint grid texture used behind hero & section seams */
+  .grid-paper{
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:34px 34px;
+    background-position:center;
+    opacity:.18;
+    position:absolute; inset:0; pointer-events:none;
+  }
+
+  /* ---------- nav ---------- */
+  .site-nav{
+    position:sticky; top:0; z-index:40; backdrop-filter:blur(10px);
+    background:color-mix(in srgb, var(--paper) 86%, transparent);
+    border-bottom:1px solid var(--line);
+  }
+  .site-nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-block:14px;}
+  .brand{display:flex; align-items:center; gap:.65rem; font-family:var(--font-display); font-size:1.28rem; font-weight:600; text-decoration:none;}
+  .brand small{display:block; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); font-weight:400;}
+  .mark{width:40px; height:40px; flex:none;}
+  .nav-links{display:flex; gap:1.9rem; list-style:none; margin:0; padding:0; font-size:.94rem;}
+  .nav-links a{text-decoration:none; position:relative; padding-block:.2rem;}
+  .nav-links a::after{content:"";position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--coral); transform:scaleX(0); transform-origin:left; transition:transform .25s ease;}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-cta{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase;
+    background:var(--coral); color:#fff8ef; padding:.55rem 1rem; border-radius:100px; text-decoration:none;
+    box-shadow:var(--shadow); white-space:nowrap;
+  }
+  .nav-toggle{display:none; background:none; border:1px solid var(--line); border-radius:8px; padding:.4rem .6rem; font-size:1.1rem; color:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative; overflow:hidden; padding-block:clamp(64px,10vw,116px) clamp(56px,8vw,96px);}
+  .hero .wrap{position:relative; display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,60px); align-items:center;}
+  .hero-eyebrow{display:inline-flex; align-items:center; gap:.5rem; background:var(--paper-raised); border:1px solid var(--line); padding:.4rem .85rem; border-radius:100px; margin-bottom:1.4rem;}
+  .hero-eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--coral); animation:pulse 2.2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.35;}}
+  .hero h1{font-size:clamp(2.5rem,4.6vw,3.85rem); line-height:1.06; letter-spacing:-.01em;}
+  .hero h1 em{font-style:italic; color:var(--plum);}
+  .hero p.lede{margin-top:1.25rem; max-width:46ch; font-size:1.14rem; color:var(--ink-soft);}
+  .hero-actions{display:flex; gap:.9rem; margin-top:2.1rem; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-body); font-weight:600; font-size:.98rem; text-decoration:none;
+    padding:.85rem 1.5rem; border-radius:11px; display:inline-flex; align-items:center; gap:.5rem;
+    transition:transform .18s ease, box-shadow .18s ease; border:1px solid transparent; cursor:pointer;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--ink); color:var(--paper); box-shadow:var(--shadow);}
+  .btn-line{border-color:var(--line); color:var(--ink); background:var(--paper-raised);}
+  .hero-stats{display:flex; gap:1.6rem; margin-top:2.6rem; flex-wrap:wrap;}
+  .hero-stats div{border-left:2px solid var(--line); padding-left:.8rem;}
+  .hero-stats .n{font-family:var(--font-mono); font-size:1.5rem; font-weight:600; display:block;}
+  .hero-stats .l{font-size:.78rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em;}
+
+  .hero-card{
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:20px; padding:clamp(20px,3vw,30px);
+    box-shadow:var(--shadow); position:relative;
+  }
+  .hero-card .cap{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:1rem; display:flex; justify-content:space-between;}
+  .mini-map{width:100%; height:auto; border-radius:10px; overflow:hidden; border:1px solid var(--line);}
+  .hero-card .caption{margin-top:1rem; font-size:.86rem; color:var(--ink-soft);}
+
+  /* ---------- section shell ---------- */
+  section{padding-block:clamp(58px,9vw,104px); position:relative;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{max-width:640px; margin-bottom:clamp(30px,5vw,52px);}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.55rem); margin-top:.5rem;}
+  .section-head p{color:var(--ink-soft); margin-top:.85rem; font-size:1.05rem;}
+  [data-reveal]{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  [data-reveal].in-view{opacity:1; transform:translateY(0);}
+
+  /* ---------- tour / walkthrough ---------- */
+  .tour-shell{background:var(--paper-raised); border:1px solid var(--line); border-radius:22px; padding:clamp(18px,3vw,34px); box-shadow:var(--shadow);}
+  .tour-top{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:1.3rem;}
+  .room-dots{display:flex; gap:.5rem;}
+  .room-dots button{width:11px; height:11px; border-radius:50%; border:1px solid var(--line); background:transparent; padding:0; cursor:pointer;}
+  .room-dots button[aria-current="true"]{background:var(--coral); border-color:var(--coral);}
+  .tour-controls{display:flex; gap:.6rem;}
+  .tour-controls button{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.04em; text-transform:uppercase;
+    border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:.55rem .9rem; border-radius:9px; cursor:pointer;
+  }
+  .tour-controls button:hover{border-color:var(--ink);}
+  .tour-map-wrap{outline:none;}
+  .tour-map-wrap svg{width:100%; height:auto; display:block;}
+  .room-panel{cursor:pointer; transition:opacity .3s ease;}
+  .room-panel rect.fill{transition:opacity .3s ease;}
+  .room-panel:not(.active) rect.fill{opacity:.5;}
+  .room-panel.active rect.fill{opacity:.95;}
+  .room-panel text{font-family:var(--font-mono); pointer-events:none;}
+  .room-label{fill:var(--paper-raised); font-size:13px; letter-spacing:.03em;}
+  .room-sub{fill:var(--paper-raised); font-size:10px; opacity:.85;}
+  .hallway-strip{fill:var(--paper);}
+  .hallway-path{fill:none; stroke:var(--line); stroke-width:2; stroke-dasharray:6 6;}
+  .walker{transition:transform .55s cubic-bezier(.4,.0,.2,1);}
+  .walker circle.body{fill:var(--coral); stroke:var(--paper-raised); stroke-width:3;}
+  .walker circle.pulse{fill:none; stroke:var(--coral); stroke-width:2; opacity:.5; animation:walkerPulse 1.8s ease-out infinite;}
+  @keyframes walkerPulse{0%{r:12; opacity:.55;} 100%{r:26; opacity:0;}}
+
+  .room-detail{display:grid; grid-template-columns:auto 1fr; gap:1.3rem; margin-top:1.6rem; padding-top:1.5rem; border-top:1px dashed var(--line); align-items:start;}
+  .room-swatch{width:52px; height:52px; border-radius:12px; flex:none;}
+  .room-detail h3{font-size:1.5rem;}
+  .room-spec{font-family:var(--font-mono); font-size:.82rem; color:var(--ink-soft); margin-top:.35rem; letter-spacing:.02em;}
+  .room-desc{margin-top:.7rem; color:var(--ink-soft); max-width:56ch;}
+  .center-tags{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem; list-style:none; padding:0;}
+  .center-tags li{
+    font-size:.82rem; border:1px solid var(--line); padding:.32rem .7rem; border-radius:100px; background:var(--paper);
+  }
+
+  /* ---------- safety / plaque section ---------- */
+  .plaque-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,4vw,40px);}
+  .plaque{background:var(--paper-raised); border:1px solid var(--line); border-radius:18px; padding:clamp(20px,3vw,28px);}
+  .plaque h3{font-size:1.2rem; display:flex; align-items:center; gap:.6rem;}
+  .plaque h3 .chip{width:9px; height:9px; border-radius:2px; transform:rotate(45deg); background:var(--moss); flex:none;}
+  .check-list{list-style:none; margin:1.1rem 0 0; padding:0; display:grid; gap:.65rem;}
+  .check-list li{display:flex; gap:.65rem; align-items:flex-start; font-size:.95rem;}
+  .check-list svg{flex:none; margin-top:3px;}
+
+  /* ---------- church conversion story ---------- */
+  .church-flex{display:grid; grid-template-columns:.95fr 1.05fr; gap:clamp(28px,5vw,56px); align-items:center;}
+  .steps-row{display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-top:1.6rem;}
+  .step{background:var(--paper-raised); border:1px solid var(--line); border-radius:12px; padding:.85rem .7rem; text-align:center;}
+  .step .icon{width:30px; height:30px; margin:0 auto .5rem;}
+  .step span{display:block; font-size:.74rem; color:var(--ink-soft); line-height:1.3;}
+  .timer-badge{
+    display:inline-flex; align-items:center; gap:.5rem; margin-top:1.4rem; font-family:var(--font-mono);
+    font-size:.85rem; background:var(--paper-raised); border:1px solid var(--line); padding:.5rem .9rem; border-radius:100px;
+  }
+
+  /* ---------- enroll / countdown ---------- */
+  .enroll-shell{background:var(--ink); color:var(--paper); border-radius:26px; padding:clamp(32px,6vw,64px); position:relative; overflow:hidden;}
+  .enroll-shell .grid-paper{opacity:.08;}
+  .enroll-shell .eyebrow{color:color-mix(in srgb, var(--paper) 65%, transparent);}
+  .enroll-flex{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,60px); align-items:center;}
+  .enroll-flex h2{color:var(--paper); font-size:clamp(1.9rem,3.4vw,2.5rem);}
+  .countdown{display:flex; gap:1rem; margin-top:1.6rem; flex-wrap:wrap;}
+  .countdown div{text-align:center;}
+  .countdown .num{font-family:var(--font-mono); font-size:clamp(1.8rem,4vw,2.5rem); font-weight:600; font-variant-numeric:tabular-nums; color:var(--coral);}
+  .countdown .lbl{font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:color-mix(in srgb, var(--paper) 65%, transparent);}
+  .enroll-form{background:var(--paper); color:var(--ink); border-radius:18px; padding:clamp(20px,3vw,30px); box-shadow:0 30px 60px -30px rgba(0,0,0,.5);}
+  .field{display:grid; gap:.35rem; margin-bottom:1rem;}
+  .field label{font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft);}
+  .field input, .field select{
+    font-family:var(--font-body); font-size:.98rem; padding:.7rem .85rem; border-radius:9px; border:1px solid var(--line);
+    background:var(--paper-raised); color:var(--ink);
+  }
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:.8rem;}
+  .enroll-form .btn-solid{width:100%; justify-content:center; margin-top:.4rem;}
+  .form-note{font-size:.78rem; color:var(--ink-soft); margin-top:.8rem;}
+  .success-msg{display:none; text-align:center; padding:1.2rem 0;}
+  .success-msg.show{display:block;}
+  .success-msg .check{width:44px; height:44px; margin:0 auto .8rem;}
+
+  /* ---------- footer ---------- */
+  footer{padding-block:44px; background:var(--paper-raised); border-top:1px solid var(--line);}
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:2rem;}
+  .foot-grid h4{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:.8rem;}
+  .foot-grid ul{list-style:none; margin:0; padding:0; display:grid; gap:.55rem; font-size:.9rem;}
+  .foot-grid a{text-decoration:none;}
+  .foot-grid a:hover{color:var(--coral);}
+  .foot-bottom{margin-top:2.4rem; padding-top:1.4rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:.8rem; font-size:.82rem; color:var(--ink-soft);}
+
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .nav-toggle{display:inline-flex;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .plaque-grid, .church-flex, .enroll-flex{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .steps-row{grid-template-columns:repeat(2,1fr);}
+    .room-detail{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .field-row{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:1rem;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="1" y="1" width="38" height="38" rx="9" fill="var(--plum)"/>
+        <path d="M20 10c-3 3-3 6 0 9 3-3 3-6 0-9Z" fill="var(--paper-raised)"/>
+        <path d="M20 19v11" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M14 30h12" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M20 19c-4 0-6-2-6-2M20 19c4 0-2 0 6-2" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span>Sprout &amp; Steeple<small>Early Learning Center</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tour">The Walkthrough</a></li>
+      <li><a href="#safety">Safety</a></li>
+      <li><a href="#church">Weekends</a></li>
+      <li><a href="#enroll">Enroll</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#enroll">Join the Waitlist</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="grid-paper"></div>
+    <div class="wrap">
+      <div>
+        <div class="hero-eyebrow"><span class="dot"></span> <span class="eyebrow">Now enrolling &middot; opens September 2026</span></div>
+        <h1>Fifty little ones,<br>one hallway, <em>endless room</em> to grow.</h1>
+        <p class="lede">Sprout &amp; Steeple is a brand-new basement daycare built from the studs up for four age groups — Toddler through Pre-K — inside a real, working church. Walk the hallway below to see exactly where your child will spend their days.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#tour">Take the Virtual Tour</a>
+          <a class="btn btn-line" href="#enroll">Reserve a September Spot</a>
+        </div>
+        <div class="hero-stats">
+          <div><span class="n">50</span><span class="l">Children served</span></div>
+          <div><span class="n">1,750</span><span class="l">Sq ft of classrooms</span></div>
+          <div><span class="n">4</span><span class="l">Age-specific rooms</span></div>
+          <div><span class="n">&lt;20</span><span class="l">Min. weekend changeover</span></div>
+        </div>
+      </div>
+      <div class="hero-card" data-reveal>
+        <div class="cap"><span>Master Blueprint</span><span>Scale 1/4&Prime; = 1 ft</span></div>
+        <svg class="mini-map" viewBox="0 0 400 200" role="img" aria-label="Miniature floor plan preview">
+          <rect width="400" height="200" fill="var(--paper)"/>
+          <rect x="14" y="14" width="112" height="112" fill="var(--plum)" opacity=".85"/>
+          <rect x="130" y="14" width="112" height="112" fill="var(--harbor)" opacity=".85"/>
+          <rect x="246" y="14" width="72" height="112" fill="var(--moss)" opacity=".85"/>
+          <rect x="322" y="14" width="64" height="112" fill="var(--coral)" opacity=".85"/>
+          <rect x="14" y="150" width="372" height="26" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 5"/>
+          <text x="200" y="167" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="var(--ink-soft)">6 FT HALLWAY · MAIN ENTRANCE</text>
+        </svg>
+        <p class="caption">Every wall you see converts in minutes so the same room welcomes the congregation each Sunday.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tour">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">The Walkthrough</p>
+        <h2>Walk the hallway, room by room.</h2>
+        <p>This is the same 50 × 35 ft basement laid out on the real blueprint — scaled so each room's width matches its actual square footage. Step through it below, or click straight into any room.</p>
+      </div>
+
+      <div class="tour-shell" data-reveal>
+        <div class="tour-top">
+          <div class="room-dots" id="roomDots"></div>
+          <div class="tour-controls">
+            <button id="prevRoom" type="button">&larr; Previous Room</button>
+            <button id="nextRoom" type="button">Next Room &rarr;</button>
+          </div>
+        </div>
+
+        <div class="tour-map-wrap" id="tourMap" tabindex="0" aria-label="Interactive floor plan. Use the arrow keys or buttons to walk between rooms.">
+          <svg viewBox="0 0 1160 400" id="tourSvg">
+            <!-- rooms drawn by JS -->
+            <g id="roomLayer"></g>
+            <rect class="hallway-strip" x="20" y="330" width="1120" height="46" rx="4"></rect>
+            <path class="hallway-path" id="hallwayPath" d=""></path>
+            <g id="walker" class="walker">
+              <circle class="pulse" cx="0" cy="0" r="12"></circle>
+              <circle class="body" cx="0" cy="0" r="11"></circle>
+            </g>
+          </svg>
+        </div>
+
+        <div class="room-detail">
+          <div class="room-swatch" id="roomSwatch"></div>
+          <div>
+            <h3 id="roomName">Room name</h3>
+            <p class="room-spec" id="roomSpec">— sq ft · — children</p>
+            <p class="room-desc" id="roomDesc">Description</p>
+            <ul class="center-tags" id="roomCenters"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="safety">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Built Right, Down to the Studs</p>
+        <h2>Every detail meets NYS OCFS &amp; ECERS&#8209;3 standards.</h2>
+        <p>Nothing here is an afterthought — the room dividers, the shelf heights, the sinks — all of it was drafted before a single wall went up.</p>
+      </div>
+      <div class="plaque-grid">
+        <div class="plaque" data-reveal>
+          <h3><span class="chip" style="background:var(--moss)"></span>Compliance Highlights</h3>
+          <ul class="check-list">
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> All materials sit at child height, in every room</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Learning centers labeled clearly, with photos</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Wide-open floor space for safe movement &amp; supervision</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Sinks &amp; handwashing stations within reach</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Natural daylight reaches every classroom</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="var(--moss)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Exits marked, unobstructed, and drilled monthly</li>
+          </ul>
+        </div>
+        <div class="plaque" data-reveal>
+          <h3><span class="chip" style="background:var(--plum)"></span>Mobile &amp; Modular by Design</h3>
+          <ul class="check-list">
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Wall dividers roll and lock into place in seconds</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Chairs stack, tables fold, storage rolls away</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Rugs roll up in one motion for fast storage</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Every classroom breaks down in under 20 minutes</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Full open floor for Sunday service, restored by Monday</li>
+            <li><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="var(--plum)"/><path d="M5 9.5l2.5 2.5L13 6.5" stroke="var(--paper-raised)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Locking casters keep every unit put during the week</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="church">
+    <div class="wrap church-flex">
+      <div data-reveal>
+        <p class="eyebrow">One Room, Two Callings</p>
+        <h2>Weekdays, it's a classroom.<br>Weekends, it's a sanctuary.</h2>
+        <p style="color:var(--ink-soft); margin-top:.9rem; max-width:52ch;">Sprout &amp; Steeple shares its basement with the church upstairs. Every shelf, divider, and rug was chosen so the same 1,750 sq ft can flip from five classrooms to open sanctuary seating — and back — without a single tool.</p>
+        <div class="timer-badge">⏱ <span>Full changeover, start to finish: under 20 minutes</span></div>
+      </div>
+      <div>
+        <div class="steps-row" data-reveal>
+          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="var(--harbor)" stroke-width="1.6"/><path d="M9 3v18M15 3v18" stroke="var(--harbor)" stroke-width="1.6"/></svg><span>1. Unlock &amp; fold dividers</span></div>
+          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="5" y="6" width="14" height="4" rx="1" stroke="var(--harbor)" stroke-width="1.6"/><rect x="5" y="12" width="14" height="4" rx="1" stroke="var(--harbor)" stroke-width="1.6"/></svg><span>2. Stack chairs, fold tables</span></div>
+          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="10" width="18" height="4" rx="2" stroke="var(--harbor)" stroke-width="1.6"/></svg><span>3. Roll up rugs, store toys</span></div>
+          <div class="step"><svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="var(--harbor)" stroke-width="1.6"/></svg><span>4. Clear floor — sanctuary ready</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="enroll">
+    <div class="wrap">
+      <div class="enroll-shell" data-reveal>
+        <div class="grid-paper"></div>
+        <div class="enroll-flex">
+          <div>
+            <p class="eyebrow">Doors open September 1, 2026</p>
+            <h2>Reserve your child's spot before the hallway fills up.</h2>
+            <p style="color:color-mix(in srgb, var(--paper) 78%, transparent); margin-top:.9rem; max-width:44ch;">Only 50 seats across four rooms. Founding families who join the waitlist before opening day get first pick of room and schedule.</p>
+            <div class="countdown" id="countdown">
+              <div><span class="num" id="cd-days">00</span><span class="lbl">Days</span></div>
+              <div><span class="num" id="cd-hours">00</span><span class="lbl">Hours</span></div>
+              <div><span class="num" id="cd-mins">00</span><span class="lbl">Mins</span></div>
+              <div><span class="num" id="cd-secs">00</span><span class="lbl">Secs</span></div>
+            </div>
+          </div>
+          <div class="enroll-form">
+            <form id="waitlistForm">
+              <div class="field">
+                <label for="parentName">Parent / guardian name</label>
+                <input id="parentName" name="parentName" type="text" required placeholder="Jordan Lee" />
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="parentEmail">Email</label>
+                  <input id="parentEmail" name="parentEmail" type="email" required placeholder="you@email.com" />
+                </div>
+                <div class="field">
+                  <label for="parentPhone">Phone</label>
+                  <input id="parentPhone" name="parentPhone" type="tel" placeholder="(555) 010-0143" />
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="childAge">Child's age this fall</label>
+                  <select id="childAge" name="childAge">
+                    <option>Toddler (18–24 mo.)</option>
+                    <option>3-Year-Old Room</option>
+                    <option>Pre-K, Room 1</option>
+                    <option>Pre-K, Room 2</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="startDate">Preferred start</label>
+                  <input id="startDate" name="startDate" type="date" />
+                </div>
+              </div>
+              <button class="btn btn-solid" type="submit">Join the September Waitlist</button>
+              <p class="form-note">No payment required to join the waitlist. We'll follow up to schedule an in-person visit.</p>
+            </form>
+            <div class="success-msg" id="successMsg">
+              <svg class="check" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="var(--moss)" stroke-width="2"/><path d="M13 22l6 6 12-13" fill="none" stroke="var(--moss)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <h3 style="font-size:1.15rem;">You're on the list.</h3>
+              <p style="color:var(--ink-soft); margin-top:.4rem;">We'll email you within two business days to schedule your visit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="#top" style="margin-bottom:.8rem; display:inline-flex;">
+        <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="1" y="1" width="38" height="38" rx="9" fill="var(--plum)"/>
+          <path d="M20 10c-3 3-3 6 0 9 3-3 3-6 0-9Z" fill="var(--paper-raised)"/>
+          <path d="M20 19v11" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M14 30h12" stroke="var(--paper-raised)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Sprout &amp; Steeple</span>
+      </a>
+      <p style="color:var(--ink-soft); max-width:32ch; font-size:.92rem;">A 1,750 sq ft basement daycare inside Fellowship Community Church, opening September 2026.</p>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <ul>
+        <li>123 Fellowship Lane</li>
+        <li>Hudson Falls, NY 12839</li>
+        <li>Basement entrance, rear lot</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+15550100143">(555) 010-0143</a></li>
+        <li><a href="mailto:hello@sproutandsteeple.org">hello@sproutandsteeple.org</a></li>
+        <li>Mon–Fri, 7:00a–6:00p</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#tour">The Walkthrough</a></li>
+        <li><a href="#safety">Safety &amp; Compliance</a></li>
+        <li><a href="#church">Weekend Setup</a></li>
+        <li><a href="#enroll">Waitlist</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 Sprout &amp; Steeple Early Learning Center. All rights reserved.</span>
+    <span>Licensed &amp; inspected under NYS OCFS · ECERS-3 rated</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rooms = [
+    {
+      name:"Pre-K Room 1",
+      sqft:560, capacity:16,
+      color:"var(--plum)",
+      desc:"The most independent learners in the building get five dedicated centers and their own small-group table — built for children about to start kindergarten.",
+      centers:["Library & Writing","Math & Manipulatives","Technology","Science & Discovery","Blocks & Engineering"]
+    },
+    {
+      name:"Pre-K Room 2",
+      sqft:560, capacity:16,
+      color:"var(--harbor)",
+      desc:"A twin classroom next door, oriented around dramatic play and the arts — sensory and fine-motor work sit right beside the easels.",
+      centers:["Dramatic Play","Art Studio","Sensory","Fine Motor","Music & Movement"]
+    },
+    {
+      name:"3-Year-Old Room",
+      sqft:350, capacity:10,
+      color:"var(--moss)",
+      desc:"Smaller group, more one-on-one time. Centers are scaled down but no less complete — block building through early literacy.",
+      centers:["Dramatic Play","Art Center","Blocks Center","Library Center","Manipulative Center"]
+    },
+    {
+      name:"Toddler Room",
+      sqft:280, capacity:8,
+      color:"var(--coral)",
+      desc:"The smallest room, closest to the entrance, built around soft play and calm. Everything here is padded, low, and within an arm's reach.",
+      centers:["Soft Play / Active Area","Sensory Center","Early Learning Center","Reading / Calm Area"]
+    }
+  ];
+
+  var totalSqft = rooms.reduce(function(a,r){return a+r.sqft;},0);
+  var mapLeft = 40, mapRight = 1120, mapTop = 30, roomHeight = 280, gap = 10;
+  var usableWidth = (mapRight - mapLeft) - gap * (rooms.length - 1);
+
+  var xCursor = mapLeft;
+  rooms.forEach(function(r){
+    r.w = (r.sqft/totalSqft) * usableWidth;
+    r.x = xCursor;
+    r.cx = xCursor + r.w/2;
+    xCursor += r.w + gap;
+  });
+
+  var roomLayer = document.getElementById("roomLayer");
+  var svgNS = "http://www.w3.org/2000/svg";
+
+  rooms.forEach(function(r, i){
+    var g = document.createElementNS(svgNS,"g");
+    g.setAttribute("class","room-panel");
+    g.setAttribute("data-index", i);
+
+    var rect = document.createElementNS(svgNS,"rect");
+    rect.setAttribute("class","fill");
+    rect.setAttribute("x", r.x);
+    rect.setAttribute("y", mapTop);
+    rect.setAttribute("width", r.w);
+    rect.setAttribute("height", roomHeight);
+    rect.setAttribute("rx", 10);
+    rect.setAttribute("fill", r.color);
+    g.appendChild(rect);
+
+    var label = document.createElementNS(svgNS,"text");
+    label.setAttribute("class","room-label");
+    label.setAttribute("x", r.cx);
+    label.setAttribute("y", mapTop + roomHeight/2 - 6);
+    label.setAttribute("text-anchor","middle");
+    label.textContent = r.name;
+    g.appendChild(label);
+
+    var sub = document.createElementNS(svgNS,"text");
+    sub.setAttribute("class","room-sub");
+    sub.setAttribute("x", r.cx);
+    sub.setAttribute("y", mapTop + roomHeight/2 + 14);
+    sub.setAttribute("text-anchor","middle");
+    sub.textContent = r.sqft + " sq ft · " + r.capacity + " children";
+    g.appendChild(sub);
+
+    roomLayer.appendChild(g);
+    r.el = g;
+  });
+
+  var hallwayPath = document.getElementById("hallwayPath");
+  hallwayPath.setAttribute("d", "M " + (mapLeft+20) + " 353 L " + (mapRight-20) + " 353");
+
+  var walker = document.getElementById("walker");
+  var dotsWrap = document.getElementById("roomDots");
+  rooms.forEach(function(r,i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label","Go to " + r.name);
+    b.addEventListener("click", function(){ setActive(i); });
+    dotsWrap.appendChild(b);
+    r.dot = b;
+  });
+
+  var current = 0;
+  function setActive(i){
+    current = ((i % rooms.length) + rooms.length) % rooms.length;
+    rooms.forEach(function(r, idx){
+      r.el.classList.toggle("active", idx===current);
+      r.dot.setAttribute("aria-current", idx===current ? "true" : "false");
+    });
+    var r = rooms[current];
+    walker.setAttribute("transform","translate(" + r.cx + ",353)");
+    document.getElementById("roomName").textContent = r.name;
+    document.getElementById("roomSpec").textContent = r.sqft + " sq ft  ·  " + r.capacity + " children";
+    document.getElementById("roomDesc").textContent = r.desc;
+    document.getElementById("roomSwatch").style.background = r.color;
+    var list = document.getElementById("roomCenters");
+    list.innerHTML = "";
+    r.centers.forEach(function(c){
+      var li = document.createElement("li");
+      li.textContent = c;
+      list.appendChild(li);
+    });
+  }
+
+  rooms.forEach(function(r,i){
+    r.el.addEventListener("click", function(){ setActive(i); });
+    r.el.setAttribute("tabindex","0");
+    r.el.addEventListener("keydown", function(e){
+      if(e.key==="Enter" || e.key===" "){ e.preventDefault(); setActive(i); }
+    });
+  });
+
+  document.getElementById("prevRoom").addEventListener("click", function(){ setActive(current-1); });
+  document.getElementById("nextRoom").addEventListener("click", function(){ setActive(current+1); });
+
+  var mapWrap = document.getElementById("tourMap");
+  mapWrap.addEventListener("keydown", function(e){
+    if(e.key==="ArrowRight"){ e.preventDefault(); setActive(current+1); }
+    if(e.key==="ArrowLeft"){ e.preventDefault(); setActive(current-1); }
+  });
+
+  setActive(0);
+
+  // ---- reveal on scroll ----
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in-view"); io.unobserve(e.target); }
+      });
+    }, {threshold:.15});
+    document.querySelectorAll("[data-reveal]").forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("in-view"); });
+  }
+
+  // ---- countdown ----
+  var target = new Date("2026-09-01T07:00:00");
+  function tick(){
+    var now = new Date();
+    var diff = Math.max(0, target - now);
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById("cd-days").textContent = String(d).padStart(2,"0");
+    document.getElementById("cd-hours").textContent = String(h).padStart(2,"0");
+    document.getElementById("cd-mins").textContent = String(m).padStart(2,"0");
+    document.getElementById("cd-secs").textContent = String(s).padStart(2,"0");
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ---- nav toggle (mobile) ----
+  var navToggle = document.getElementById("navToggle");
+  var navLinks = document.querySelector(".nav-links");
+  navToggle.addEventListener("click", function(){
+    var open = navLinks.style.display === "flex";
+    navLinks.style.display = open ? "none" : "flex";
+    navLinks.style.cssText += open ? "" : "position:absolute; top:100%; left:0; right:0; flex-direction:column; background:var(--paper); padding:1rem 1.5rem; border-bottom:1px solid var(--line); gap:1rem;";
+  });
+
+  // ---- waitlist form ----
+  var form = document.getElementById("waitlistForm");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    form.style.display = "none";
+    document.getElementById("successMsg").classList.add("show");
+  });
+
+  // ---- theme toggle support (host may stamp data-theme on <html>) ----
+})();
+</script>
+</body>
+</html>
