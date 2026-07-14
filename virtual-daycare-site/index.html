@@ -17,6 +17,7 @@
     --blue-deep:#0B3FA0;
     --yellow:#FFC22E;
     --orange:#FF9F1C;
+    --danger:#B3261E;
     --shadow: 0 20px 45px -25px rgba(20,34,68,0.35);
     --font-display: "Iowan Old Style","Palatino Linotype","URW Palladio L",Georgia,ui-serif,serif;
     --font-body: Optima,Candara,"Segoe UI",ui-sans-serif,system-ui,-apple-system,sans-serif;
@@ -35,6 +36,7 @@
       --blue-deep:#3A63C9;
       --yellow:#FFD35C;
       --orange:#FFB157;
+      --danger:#FF8A80;
       --shadow: 0 20px 45px -20px rgba(0,0,0,0.65);
       color-scheme: dark;
     }
@@ -42,13 +44,13 @@
   :root[data-theme="dark"]{
     --ink:#EAF0FF; --ink-soft:#9FB3D9; --paper:#0B1530; --paper-raised:#12204A;
     --paper-line:#233866; --line:#233866; --blue:#5B8DFF; --blue-deep:#3A63C9;
-    --yellow:#FFD35C; --orange:#FFB157;
+    --yellow:#FFD35C; --orange:#FFB157; --danger:#FF8A80;
     --shadow: 0 20px 45px -20px rgba(0,0,0,0.65); color-scheme: dark;
   }
   :root[data-theme="light"]{
     --ink:#142244; --ink-soft:#51628A; --paper:#FAFBFF; --paper-raised:#FFFFFF;
     --paper-line:#FFFFFF; --line:#D8E1F0; --blue:#1D63ED; --blue-deep:#0B3FA0;
-    --yellow:#FFC22E; --orange:#FF9F1C;
+    --yellow:#FFC22E; --orange:#FF9F1C; --danger:#B3261E;
     --shadow: 0 20px 45px -25px rgba(20,34,68,0.35); color-scheme: light;
   }
 
@@ -222,6 +224,9 @@
   .field-row{display:grid; grid-template-columns:1fr 1fr; gap:.8rem;}
   .enroll-form .btn-solid{width:100%; justify-content:center; margin-top:.4rem;}
   .form-note{font-size:.78rem; color:var(--ink-soft); margin-top:.8rem;}
+  .form-error{display:none; font-size:.82rem; color:var(--danger); margin-top:.7rem;}
+  .form-error.show{display:block;}
+  .btn[disabled]{opacity:.6; cursor:progress;}
   .success-msg{display:none; text-align:center; padding:1.2rem 0;}
   .success-msg.show{display:block;}
   .success-msg .check{width:44px; height:44px; margin:0 auto .8rem;}
@@ -429,6 +434,9 @@
           </div>
           <div class="enroll-form">
             <form id="waitlistForm">
+              <input type="hidden" name="_subject" value="New Tots 2 Teens waitlist signup" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
               <div class="field">
                 <label for="parentName">Parent / guardian name</label>
                 <input id="parentName" name="parentName" type="text" required placeholder="Jordan Lee" />
@@ -458,8 +466,9 @@
                   <input id="startDate" name="startDate" type="date" />
                 </div>
               </div>
-              <button class="btn btn-solid" type="submit">Join the September Waitlist</button>
+              <button class="btn btn-solid" type="submit" id="waitlistSubmit">Join the September Waitlist</button>
               <p class="form-note">No payment required to join the waitlist. We'll follow up to schedule an in-person visit.</p>
+              <p class="form-error" id="formError">Something went wrong sending your info. Please try again, or email us directly at <a href="mailto:tot2teens123@gmail.com">tot2teens123@gmail.com</a>.</p>
             </form>
             <div class="success-msg" id="successMsg">
               <svg class="check" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="var(--blue)" stroke-width="2"/><path d="M13 22l6 6 12-13" fill="none" stroke="var(--blue)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -700,10 +709,30 @@
 
   // ---- waitlist form ----
   var form = document.getElementById("waitlistForm");
+  var submitBtn = document.getElementById("waitlistSubmit");
+  var formError = document.getElementById("formError");
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    form.style.display = "none";
-    document.getElementById("successMsg").classList.add("show");
+    formError.classList.remove("show");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+
+    var data = new FormData(form);
+    data.set("_replyto", document.getElementById("parentEmail").value);
+
+    fetch("https://formsubmit.co/ajax/tot2teens123@gmail.com", {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: data
+    }).then(function(res){
+      if(!res.ok){ throw new Error("Request failed"); }
+      form.style.display = "none";
+      document.getElementById("successMsg").classList.add("show");
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Join the September Waitlist";
+      formError.classList.add("show");
+    });
   });
 
   // ---- theme toggle support (host may stamp data-theme on <html>) ----
